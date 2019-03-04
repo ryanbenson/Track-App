@@ -2,16 +2,22 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <Achievements/>
+    <Links/>
+    <Tasks/>
   </div>
 </template>
 
 <script>
 import Achievements from "./components/Achievements.vue";
+import Links from "./components/Links.vue";
+import Tasks from "./components/Tasks.vue";
 
 export default {
   name: "app",
   components: {
-    Achievements
+    Achievements,
+    Links,
+    Tasks
   }
 };
 </script>
