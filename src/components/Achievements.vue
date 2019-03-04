@@ -7,12 +7,8 @@
       <Achievement
         v-for="(achievement, index) in achievements"
         class="achievements--item"
-        :key="achievement.index"
-        :title="achievement.title"
-        :due="achievement.due"
-        :week="achievement.week"
-        :year="achievement.year"
-        :level="achievement.level"
+        :key="index"
+        :achievement="achievement"
       />
     </div>
   </div>

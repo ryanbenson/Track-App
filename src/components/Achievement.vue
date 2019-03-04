@@ -1,10 +1,10 @@
 <template>
   <div class="achievement">
-    <h3>{{title}}</h3>
-    <p>{{due}}</p>
-    <p>{{week}}</p>
-    <p>{{year}}</p>
-    <p>{{level}}</p>
+    <h3>{{achievement.title}}</h3>
+    <p>{{achievement.date}}</p>
+    <p>{{achievement.week}}</p>
+    <p>{{achievement.year}}</p>
+    <p>{{achievement.level}}</p>
   </div>
 </template>
 
@@ -12,11 +12,7 @@
 export default {
   name: "Achievement",
   props: {
-    title: String,
-    due: Date,
-    week: String,
-    year: String,
-    level: String
+    achievement: Object
   }
 };
 </script>
