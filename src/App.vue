@@ -4,6 +4,7 @@
     <Achievements/>
     <Links/>
     <Tasks/>
+    <Activities/>
   </div>
 </template>
 
@@ -11,13 +12,15 @@
 import Achievements from "./components/Achievements.vue";
 import Links from "./components/Links.vue";
 import Tasks from "./components/Tasks.vue";
+import Activities from "./components/Activities.vue";
 
 export default {
   name: "app",
   components: {
     Achievements,
     Links,
-    Tasks
+    Tasks,
+    Activities
   }
 };
 </script>
