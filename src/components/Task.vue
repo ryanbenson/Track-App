@@ -1,6 +1,6 @@
 <template>
   <div class="task">
-    <p>{{task.title}}</a>
+    <p>{{task.title}}</p>
     <p>{{task.tags}}</p>
     <p>{{task.read}}</p>
     <p>{{task.read_at}}</p>
