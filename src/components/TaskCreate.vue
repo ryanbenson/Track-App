@@ -13,6 +13,7 @@
 <script>
 export default {
   name: "TaskCreate",
+  props: ["tasks"],
   data() {
     return {
       title: "",
@@ -22,20 +23,37 @@ export default {
     };
   },
   methods: {
-    save() {
-      return fetch(`${process.env.VUE_APP_API_URL}/tasks`, {
+    async save() {
+      const data = this.getData();
+
+      await fetch(`${process.env.VUE_APP_API_URL}/tasks`, {
         method: "POST",
         mode: "cors",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          title: this.title,
-          completed: this.completed,
-          due: this.due,
-          completed_at: this.completed_at
-        })
+        body: JSON.stringify(data)
       });
+
+      this.addToList(this.tasks, data);
+      this.reset();
+    },
+    getData() {
+      return {
+        title: this.title,
+        completed: this.completed,
+        due: this.due,
+        completed_at: this.completed_at
+      };
+    },
+    addToList(list, data) {
+      list.push(data);
+    },
+    reset() {
+      this.title = "";
+      this.completed = false;
+      this.due = "";
+      this.completed_at = "";
     }
   }
 };

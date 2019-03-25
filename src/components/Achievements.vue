@@ -1,7 +1,7 @@
 <template>
   <div class="achievements">
     <button @click="toggleNew">{{createButtonText}}</button>
-    <AchievementCreate v-if="showForm"/>
+    <AchievementCreate v-if="showForm" :achievements="achievements"/>
     <div v-if="!hasAchievements" class="achievements--none">
       <p>No achievements found</p>
     </div>

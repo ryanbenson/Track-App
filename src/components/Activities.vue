@@ -1,7 +1,7 @@
 <template>
   <div class="activities">
     <button @click="toggleNew">{{createButtonText}}</button>
-    <ActivityCreate v-if="showForm"/>
+    <ActivityCreate v-if="showForm" :activities="activities"/>
     <div v-if="!hasActivities" class="activities--none">
       <p>No activities found</p>
     </div>

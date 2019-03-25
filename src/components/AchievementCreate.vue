@@ -14,6 +14,7 @@
 <script>
 export default {
   name: "AchievementCreate",
+  props: ["achievements"],
   data() {
     return {
       title: "",
@@ -24,21 +25,39 @@ export default {
     };
   },
   methods: {
-    save() {
-      return fetch(`${process.env.VUE_APP_API_URL}/achievements`, {
+    async save() {
+      const data = this.getData();
+
+      await fetch(`${process.env.VUE_APP_API_URL}/achievements`, {
         method: "POST",
         mode: "cors",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          title: this.title,
-          date: this.date,
-          year: this.year,
-          week: this.week,
-          level: this.level
-        })
+        body: JSON.stringify(data)
       });
+
+      this.addToList(this.achievements, data);
+      this.reset();
+    },
+    getData() {
+      return {
+        title: this.title,
+        date: this.date,
+        year: this.year,
+        week: this.week,
+        level: this.level
+      };
+    },
+    addToList(list, data) {
+      list.push(data);
+    },
+    reset() {
+      this.title = "";
+      this.date = "";
+      this.year = "";
+      this.week = "";
+      this.level = "";
     }
   }
 };
@@ -46,7 +65,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
 </style>

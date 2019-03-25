@@ -14,6 +14,7 @@
 <script>
 export default {
   name: "LinkCreate",
+  props: ["links"],
   data() {
     return {
       title: "",
@@ -24,29 +25,43 @@ export default {
     };
   },
   methods: {
-    save() {
-      return fetch(`${process.env.VUE_APP_API_URL}/links`, {
+    async save() {
+      const data = this.getData();
+
+      await fetch(`${process.env.VUE_APP_API_URL}/links`, {
         method: "POST",
         mode: "cors",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-          title: this.title,
-          link: this.link,
-          read: this.read,
-          tags: this.tags.split(","),
-          read_at: this.read_at
-        })
+        body: JSON.stringify(data)
       });
+
+      this.addToList(this.links, data);
+      this.reset();
+    },
+    getData() {
+      return {
+        title: this.title,
+        link: this.link,
+        read: this.read,
+        tags: this.tags.split(","),
+        read_at: this.read_at
+      };
+    },
+    addToList(list, data) {
+      list.push(data);
+    },
+    reset() {
+      this.title = "";
+      this.link = "";
+      this.read = false;
+      this.tags = [];
+      this.read_at = "";
     }
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="links">
     <button @click="toggleNew">{{createButtonText}}</button>
-    <LinkCreate v-if="showForm"/>
+    <LinkCreate v-if="showForm" :links="links"/>
     <div v-if="!hasLinks" class="links--none">
       <p>No links found</p>
     </div>

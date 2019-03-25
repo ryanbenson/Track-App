@@ -1,7 +1,7 @@
 <template>
   <div class="tasks">
     <button @click="toggleNew">{{createButtonText}}</button>
-    <TaskCreate v-if="showForm"/>
+    <TaskCreate v-if="showForm" :tasks="tasks"/>
     <div v-if="!hasTasks" class="tasks--none">
       <p>No tasks found</p>
     </div>
