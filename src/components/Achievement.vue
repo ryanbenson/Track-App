@@ -1,36 +1,46 @@
 <template>
   <div class="achievement">
     <h3>{{achievement.title}}</h3>
-    <p>{{achievement.date}}</p>
-    <p>{{achievement.week}}</p>
-    <p>{{achievement.year}}</p>
-    <p>{{achievement.level}}</p>
+    <Tag class="achievement-date" :text="achievement.date | formatDate"/>
+    <Tag class="achievement-level" :text="achievement.level"/>
   </div>
 </template>
 
 <script>
+import Tag from "./Tag";
 export default {
   name: "Achievement",
+  components: {
+    Tag
+  },
   props: {
     achievement: Object
+  },
+  filters: {
+    formatDate(date) {
+      const d = new Date(date);
+      return `${d.getMonth()}/${d.getDay()}/${d.getFullYear()}`;
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.achievement {
+  padding: 0.25rem;
+  display: flex;
 }
-ul {
-  list-style-type: none;
+
+.achievement h3 {
   padding: 0;
+  margin: 0;
+  text-align: left;
+  flex-grow: 2;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+h3 span {
+  font-weight: normal;
+  padding: 0 0.25rem;
 }
 </style>

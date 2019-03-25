@@ -1,35 +1,39 @@
 <template>
   <div class="task">
-    <p>{{task.title}}</p>
-    <p>{{task.tags}}</p>
-    <p>{{task.read}}</p>
-    <p>{{task.read_at}}</p>
+    <h3>{{task.title}}</h3>
+    <Tag :text="task.due | formatDate"/>
+    <p v-if="task.completed">{{task.completed_at}}</p>
   </div>
 </template>
 
 <script>
+import Tag from "./Tag";
 export default {
   name: "Task",
+  components: {
+    Tag
+  },
   props: {
     task: Object
+  },
+  filters: {
+    formatDate(date) {
+      const d = new Date(date);
+      return `${d.getMonth()}/${d.getDay()}/${d.getFullYear()}`;
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.task {
+  padding: 0.25rem;
+  display: flex;
 }
-ul {
-  list-style-type: none;
+.task h3 {
   padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+  margin: 0;
+  flex-grow: 2;
 }
 </style>

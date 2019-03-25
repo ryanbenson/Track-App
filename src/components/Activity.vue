@@ -1,36 +1,41 @@
 <template>
   <div class="activity">
-    <p>{{activity.title}}</p>
-    <p>{{activity.type}}</p>
-    <p>{{activity.action}}</p>
+    <h3>{{activity.title}}</h3>
+    <Tag :text="activity.type"/>
+    <Tag :text="activity.action"/>
+    <Tag :text="activity.date | formatDate"/>
     <p>{{activity.notes}}</p>
-    <p>{{activity.date}}</p>
   </div>
 </template>
 
 <script>
+import Tag from "./Tag";
 export default {
   name: "Activity",
+  components: {
+    Tag
+  },
   props: {
     activity: Object
+  },
+  filters: {
+    formatDate(date) {
+      const d = new Date(date);
+      return `${d.getMonth()}/${d.getDay()}/${d.getFullYear()}`;
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.activity {
+  padding: 0.25rem;
+  display: flex;
 }
-ul {
-  list-style-type: none;
+.activity h3 {
   padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+  margin: 0;
+  flex-grow: 2;
 }
 </style>

@@ -1,17 +1,19 @@
 <template>
   <div class="link">
-    <p>
+    <h3>
       <a :href="link.link" target="_blank">{{link.title}}</a>
-    </p>
-    <p>{{link.tags}}</p>
-    <p>{{link.read}}</p>
-    <p>{{link.read_at}}</p>
+    </h3>
+    <Tag v-for="(tag, index) in link.tags" :key="index" :text="tag"/>
   </div>
 </template>
 
 <script>
+import Tag from "./Tag.vue";
 export default {
   name: "Link",
+  components: {
+    Tag
+  },
   props: {
     link: Object
   }
@@ -20,18 +22,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.link {
+  display: flex;
 }
-ul {
-  list-style-type: none;
+.link h3 {
   padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+  margin: 0;
+  flex-grow: 2;
 }
 </style>
