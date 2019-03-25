@@ -10,6 +10,7 @@
 
 <script>
 import Tag from "./Tag";
+import { formatDate } from "../libs/dates";
 export default {
   name: "Activity",
   components: {
@@ -19,10 +20,7 @@ export default {
     activity: Object
   },
   filters: {
-    formatDate(date) {
-      const d = new Date(date);
-      return `${d.getMonth()}/${d.getDay()}/${d.getFullYear()}`;
-    }
+    formatDate
   }
 };
 </script>
