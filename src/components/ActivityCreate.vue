@@ -36,7 +36,7 @@ export default {
           type: this.type,
           action: this.action,
           notes: this.notes,
-          date: this.datel
+          date: this.date
         })
       });
     }
