@@ -1,5 +1,6 @@
 <template>
   <div class="tasks">
+    <TaskCreate/>
     <div v-if="!hasTasks" class="tasks--none">
       <p>No tasks found</p>
     </div>
@@ -11,10 +12,12 @@
 
 <script>
 import Task from "./Task.vue";
+import TaskCreate from "./TaskCreate.vue";
 export default {
   name: "Tasks",
   components: {
-    Task
+    Task,
+    TaskCreate
   },
   data() {
     return {

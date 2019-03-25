@@ -1,5 +1,6 @@
 <template>
   <div class="activities">
+    <ActivityCreate/>
     <div v-if="!hasActivities" class="activities--none">
       <p>No activities found</p>
     </div>
@@ -16,10 +17,12 @@
 
 <script>
 import Activity from "./Activity.vue";
+import ActivityCreate from "./ActivityCreate.vue";
 export default {
   name: "Activities",
   components: {
-    Activity
+    Activity,
+    ActivityCreate
   },
   data() {
     return {

@@ -1,5 +1,6 @@
 <template>
   <div class="achievements">
+    <AchievementCreate/>
     <div v-if="!hasAchievements" class="achievements--none">
       <p>No achievements found</p>
     </div>
@@ -16,10 +17,12 @@
 
 <script>
 import Achievement from "./Achievement.vue";
+import AchievementCreate from "./AchievementCreate.vue";
 export default {
   name: "Achievements",
   components: {
-    Achievement
+    Achievement,
+    AchievementCreate
   },
   data() {
     return {

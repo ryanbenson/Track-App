@@ -1,5 +1,6 @@
 <template>
   <div class="links">
+    <LinkCreate/>
     <div v-if="!hasLinks" class="links--none">
       <p>No links found</p>
     </div>
@@ -11,10 +12,12 @@
 
 <script>
 import Link from "./Link.vue";
+import LinkCreate from "./LinkCreate.vue";
 export default {
   name: "Links",
   components: {
-    Link
+    Link,
+    LinkCreate
   },
   data() {
     return {
