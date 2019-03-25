@@ -1,6 +1,7 @@
 <template>
   <div class="activities">
-    <ActivityCreate/>
+    <button @click="toggleNew">{{createButtonText}}</button>
+    <ActivityCreate v-if="showForm"/>
     <div v-if="!hasActivities" class="activities--none">
       <p>No activities found</p>
     </div>
@@ -26,13 +27,23 @@ export default {
   },
   data() {
     return {
-      activities: []
+      activities: [],
+      showForm: false
     };
+  },
+  methods: {
+    toggleNew() {
+      this.showForm = !this.showForm;
+    }
   },
   computed: {
     hasActivities() {
       if (this.activities && this.activities.length > 0) return true;
       return false;
+    },
+    createButtonText() {
+      if (this.showForm) return "Close";
+      return "Create New Activity?";
     }
   },
   async mounted() {

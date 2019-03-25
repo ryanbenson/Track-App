@@ -1,6 +1,7 @@
 <template>
   <div class="links">
-    <LinkCreate/>
+    <button @click="toggleNew">{{createButtonText}}</button>
+    <LinkCreate v-if="showForm"/>
     <div v-if="!hasLinks" class="links--none">
       <p>No links found</p>
     </div>
@@ -21,13 +22,23 @@ export default {
   },
   data() {
     return {
-      links: []
+      links: [],
+      showForm: false
     };
+  },
+  methods: {
+    toggleNew() {
+      this.showForm = !this.showForm;
+    }
   },
   computed: {
     hasLinks() {
       if (this.links && this.links.length > 0) return true;
       return false;
+    },
+    createButtonText() {
+      if (this.showForm) return "Close";
+      return "Create New Link?";
     }
   },
   async mounted() {

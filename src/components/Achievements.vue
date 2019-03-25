@@ -1,6 +1,7 @@
 <template>
   <div class="achievements">
-    <AchievementCreate/>
+    <button @click="toggleNew">{{createButtonText}}</button>
+    <AchievementCreate v-if="showForm"/>
     <div v-if="!hasAchievements" class="achievements--none">
       <p>No achievements found</p>
     </div>
@@ -26,13 +27,23 @@ export default {
   },
   data() {
     return {
-      achievements: []
+      achievements: [],
+      showForm: false
     };
+  },
+  methods: {
+    toggleNew() {
+      this.showForm = !this.showForm;
+    }
   },
   computed: {
     hasAchievements() {
       if (this.achievements && this.achievements.length > 0) return true;
       return false;
+    },
+    createButtonText() {
+      if (this.showForm) return "Close";
+      return "Create New Achievement?";
     }
   },
   async mounted() {

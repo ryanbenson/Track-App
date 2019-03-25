@@ -1,6 +1,7 @@
 <template>
   <div class="tasks">
-    <TaskCreate/>
+    <button @click="toggleNew">{{createButtonText}}</button>
+    <TaskCreate v-if="showForm"/>
     <div v-if="!hasTasks" class="tasks--none">
       <p>No tasks found</p>
     </div>
@@ -21,13 +22,23 @@ export default {
   },
   data() {
     return {
-      tasks: []
+      tasks: [],
+      showForm: false
     };
+  },
+  methods: {
+    toggleNew() {
+      this.showForm = !this.showForm;
+    }
   },
   computed: {
     hasTasks() {
       if (this.tasks && this.tasks.length > 0) return true;
       return false;
+    },
+    createButtonText() {
+      if (this.showForm) return "Close";
+      return "Create New Task?";
     }
   },
   async mounted() {
