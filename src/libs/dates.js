@@ -1,6 +1,6 @@
 const formatDate = date => {
   const d = new Date(date);
-  return `${d.getMonth()}/${d.getDay()}/${d.getFullYear()}`;
+  return `${d.getMonth() + 1}/${d.getDay()}/${d.getFullYear()}`;
 };
 
 export { formatDate };
